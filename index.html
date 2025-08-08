@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Calificaciones y Asistencia</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Calificaciones y Asistencia</h1>
+            <nav class="nav-tabs">
+                <button class="nav-btn active" data-tab="estudiantes">Estudiantes</button>
+                <button class="nav-btn" data-tab="calificaciones">Calificaciones</button>
+                <button class="nav-btn" data-tab="asistencia">Asistencia</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Tab: Estudiantes -->
+            <div id="estudiantes" class="tab-content active">
+                <div class="section-header">
+                    <h2>Gestión de Estudiantes</h2>
+                    <button id="addStudentBtn" class="btn-primary">+ Agregar Estudiante</button>
+                </div>
+                
+                <div class="student-form" id="studentForm" style="display: none;">
+                    <h3>Nuevo Estudiante</h3>
+                    <form id="addStudentForm">
+                        <div class="form-group">
+                            <label for="studentName">Nombre completo:</label>
+                            <input type="text" id="studentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentId">ID del estudiante:</label>
+                            <input type="text" id="studentId" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Guardar</button>
+                            <button type="button" id="cancelBtn" class="btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="students-list" id="studentsList">
+                    <!-- Lista de estudiantes se genera dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Tab: Calificaciones -->
+            <div id="calificaciones" class="tab-content">
+                <div class="section-header">
+                    <h2>Calificaciones</h2>
+                    <select id="studentSelect" class="student-select">
+                        <option value="">Seleccionar estudiante...</option>
+                    </select>
+                </div>
+
+                <div class="grades-container" id="gradesContainer">
+                    <div class="grades-table">
+                        <h3 id="selectedStudentName">Selecciona un estudiante</h3>
+                        <table id="gradesTable">
+                            <thead>
+                                <tr>
+                                    <th>Primer Cuatrimestre</th>
+                                    <th>Segundo Cuatrimestre</th>
+                                    <th>Calificación Diciembre</th>
+                                    <th>Calificación Marzo</th>
+                                    <th>Calificación Definitiva</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="gradesRow">
+                                    <td><input type="number" min="1" max="10" step="0.1" class="grade-input" data-period="primer_cuatrimestre"></td>
+                                    <td><input type="number" min="1" max="10" step="0.1" class="grade-input" data-period="segundo_cuatrimestre"></td>
+                                    <td><input type="number" min="1" max="10" step="0.1" class="grade-input" data-period="diciembre"></td>
+                                    <td><input type="number" min="1" max="10" step="0.1" class="grade-input" data-period="marzo"></td>
+                                    <td><input type="number" min="1" max="10" step="0.1" class="grade-input" data-period="definitiva"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button id="saveGradesBtn" class="btn-primary" style="margin-top: 1rem;">Guardar Calificaciones</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Asistencia -->
+            <div id="asistencia" class="tab-content">
+                <div class="section-header">
+                    <h2>Asistencia</h2>
+                    <select id="studentSelectAttendance" class="student-select">
+                        <option value="">Seleccionar estudiante...</option>
+                    </select>
+                </div>
+
+                <div class="attendance-container" id="attendanceContainer">
+                    <div class="calendar-controls">
+                        <button id="prevMonth" class="btn-secondary">&lt;</button>
+                        <h3 id="currentMonth"></h3>
+                        <button id="nextMonth" class="btn-secondary">&gt;</button>
+                    </div>
+                    
+                    <div class="calendar" id="calendar">
+                        <!-- Calendario se genera dinámicamente -->
+                    </div>
+
+                    <div class="attendance-legend">
+                        <div class="legend-item">
+                            <div class="legend-color present"></div>
+                            <span>Presente</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color absent"></div>
+                            <span>Ausente</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color weekend"></div>
+                            <span>Fin de semana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer>Todos los Derechos reservados &copy;</footer>
+    <script src="app.js"></script>
+</body>
+</html>
+
